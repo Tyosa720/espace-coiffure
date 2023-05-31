@@ -7,34 +7,66 @@ interface Price {
 export default function Prices() {
   return (
     <>
-    <div className=" flex flex-wrap p-4 justify-around">
-      {prices.map((price: Price) => (
-        <div key={price.name} className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img className="p-8 rounded-t-lg" src="/docs/images/products/apple-watch.png" alt="product image" />
-          </a>
-          <div className="px-5 pb-5">
-            <a href="#">
-              <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{price.name}</h5>
-            </a>
-            <div className="flex items-center justify-between">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">{price.price} €</span>
-              <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Réserver</a>
-            </div>
+    <h1 id="tarifs" className="text-center text-3xl p-4">Nos tarifs</h1>
+    <div className="flex flex-wrap w-full justify-around text-xl">
+      <div className="lg:w-1/2 w-full flex flex-col items-center">
+        <h2 className="m-2">HOMME</h2>
+        {prices.homme.map((price) => (
+          <div className="m-2 w-10/12">
+            <div className="m-1 text-base flex justify-between">
+              <h4>{price.name}</h4> 
+              <div>{Math.floor(price.price)}€{price.price % 1 !== 0 ? price.price.toFixed(2).slice(-2) : '00'}</div>
+            </div> 
+            <hr className="prices-separator" />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className="w-full flex flex-col items-center lg:w-1/2 ">
+        <h2 className="m-2">FEMME</h2>
+        {prices.femme.map((price) => (
+          <div className="m-2 w-10/12">
+            <div className="m-1 text-base flex justify-between">
+              <h4>{price.name}</h4> 
+              <div>{Math.floor(price.price)}€{price.price % 1 !== 0 ? price.price.toFixed(2).slice(-2) : '00'}</div>
+            </div> 
+            <hr className="prices-separator" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 w-full flex flex-col items-center lg:w-1/2 ">
+        <h2 className="m-2">SOINS POUR TOUS</h2>
+        {prices.all.map((price) => (
+          <div className="m-2 w-10/12">
+            <div className="m-1 text-base flex justify-between">
+              <h4>{price.name}</h4> 
+              <div>{Math.floor(price.price)}€{price.price % 1 !== 0 ? price.price.toFixed(2).slice(-2) : '00'}</div>
+            </div> 
+            <hr className="prices-separator" />
+          </div>
+        ))}
+      </div>
     </div>
     </>
   );
 }
 
 // Données sur les prix
-export const prices: Price[] = [
-  { name: 'Coupe de cheveux pour femmes', price: 40 },
-  { name: 'Coupe de cheveux pour hommes', price: 25 },
-  { name: 'Coloration complète', price: 60 },
-  { name: 'Mèches', price: 50 },
-  { name: 'Brushing', price: 25 },
-  { name: 'Coiffure de mariage', price: 80 },
-];
+var prices = {
+  homme:[
+    { name: 'Shamp.sup coupe coiffage', price: 20 },
+    { name: 'Shampooing coupe coiffage (-10 ans)', price: 16 },
+    { name: 'Shamp.sup coupe', price: 17.50 },
+    { name: 'Barbe', price: 7.50 },
+  ],
+  femme:[
+    { name: 'Shampooing traitant coupe stylisée coiffage cheveux courts', price: 33 },
+    { name: 'Shampooing traitant coupe stylisée coiffage cheveux mi-longs', price: 38 },
+    { name: 'Shampooing traitant', price: 5.50 },
+    { name: 'Balayage cheveux courts', price: 29.50 },
+  ],
+  all:[
+    { name: 'Soin masque', price: 10 },
+    { name: 'Soin', price: 6.50 },
+    { name: 'Soin traitant', price: 8.50 },
+  ],
+};
